@@ -1,0 +1,450 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6443023E28CA0B8400CB8A0A /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6443023D28CA0B8400CB8A0A /* HealthKit.framework */; };
+		645ACDD428F43FCA009F9131 /* AnnouncementHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645ACDC628F43FCA009F9131 /* AnnouncementHandler.swift */; };
+		645ACDD528F43FCA009F9131 /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645ACDC728F43FCA009F9131 /* LogManager.swift */; };
+		645ACDD628F43FCA009F9131 /* LogItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645ACDC828F43FCA009F9131 /* LogItem.swift */; };
+		645ACDD728F43FCA009F9131 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645ACDC928F43FCA009F9131 /* LocationManager.swift */; };
+		645ACDD828F43FCA009F9131 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645ACDCB28F43FCA009F9131 /* AppConfig.swift */; };
+		645ACDD928F43FCA009F9131 /* RoutingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645ACDCD28F43FCA009F9131 /* RoutingView.swift */; };
+		645ACDDA28F43FCA009F9131 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645ACDCE28F43FCA009F9131 /* StartView.swift */; };
+		645ACDDB28F43FCA009F9131 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645ACDCF28F43FCA009F9131 /* MapView.swift */; };
+		645ACDDC28F43FCA009F9131 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645ACDD028F43FCA009F9131 /* DebugView.swift */; };
+		645ACDDD28F43FCA009F9131 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645ACDD128F43FCA009F9131 /* ContentView.swift */; };
+		645ACDDE28F43FCA009F9131 /* GpxParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 645ACDD328F43FCA009F9131 /* GpxParser.swift */; };
+		64D2D66328A3B70B00FE414D /* QuantiBikeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D2D66228A3B70B00FE414D /* QuantiBikeApp.swift */; };
+		64D2D66728A3B70D00FE414D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D2D66628A3B70D00FE414D /* Assets.xcassets */; };
+		64D2D66A28A3B70D00FE414D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D2D66928A3B70D00FE414D /* Preview Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		6424327928F5C03500549EBD /* route_improved_sim.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = route_improved_sim.gpx; path = ../../docs/route_improved_sim.gpx; sourceTree = "<group>"; };
+		6443023B28CA0B8400CB8A0A /* QuantiBike.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QuantiBike.entitlements; sourceTree = "<group>"; };
+		6443023D28CA0B8400CB8A0A /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		645ACDC628F43FCA009F9131 /* AnnouncementHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnouncementHandler.swift; sourceTree = "<group>"; };
+		645ACDC728F43FCA009F9131 /* LogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogManager.swift; sourceTree = "<group>"; };
+		645ACDC828F43FCA009F9131 /* LogItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogItem.swift; sourceTree = "<group>"; };
+		645ACDC928F43FCA009F9131 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		645ACDCB28F43FCA009F9131 /* AppConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		645ACDCD28F43FCA009F9131 /* RoutingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingView.swift; sourceTree = "<group>"; };
+		645ACDCE28F43FCA009F9131 /* StartView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		645ACDCF28F43FCA009F9131 /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		645ACDD028F43FCA009F9131 /* DebugView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
+		645ACDD128F43FCA009F9131 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		645ACDD328F43FCA009F9131 /* GpxParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GpxParser.swift; sourceTree = "<group>"; };
+		64BF299328A64ADE00937726 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		64D2D65F28A3B70B00FE414D /* QuantiBike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuantiBike.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		64D2D66228A3B70B00FE414D /* QuantiBikeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantiBikeApp.swift; sourceTree = "<group>"; };
+		64D2D66628A3B70D00FE414D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		64D2D66928A3B70D00FE414D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		64D2D65C28A3B70B00FE414D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6443023E28CA0B8400CB8A0A /* HealthKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6443023C28CA0B8400CB8A0A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6443023D28CA0B8400CB8A0A /* HealthKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		645ACDC528F43FCA009F9131 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				645ACDC628F43FCA009F9131 /* AnnouncementHandler.swift */,
+				645ACDC728F43FCA009F9131 /* LogManager.swift */,
+				645ACDC828F43FCA009F9131 /* LogItem.swift */,
+				645ACDC928F43FCA009F9131 /* LocationManager.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		645ACDCA28F43FCA009F9131 /* Ressources */ = {
+			isa = PBXGroup;
+			children = (
+				645ACDCB28F43FCA009F9131 /* AppConfig.swift */,
+			);
+			path = Ressources;
+			sourceTree = "<group>";
+		};
+		645ACDCC28F43FCA009F9131 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				645ACDCD28F43FCA009F9131 /* RoutingView.swift */,
+				645ACDCE28F43FCA009F9131 /* StartView.swift */,
+				645ACDCF28F43FCA009F9131 /* MapView.swift */,
+				645ACDD028F43FCA009F9131 /* DebugView.swift */,
+				645ACDD128F43FCA009F9131 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		645ACDD228F43FCA009F9131 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				645ACDD328F43FCA009F9131 /* GpxParser.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		64D2D65628A3B70B00FE414D = {
+			isa = PBXGroup;
+			children = (
+				6424327928F5C03500549EBD /* route_improved_sim.gpx */,
+				64D2D66128A3B70B00FE414D /* QuantiBike */,
+				64D2D66028A3B70B00FE414D /* Products */,
+				6443023C28CA0B8400CB8A0A /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		64D2D66028A3B70B00FE414D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				64D2D65F28A3B70B00FE414D /* QuantiBike.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		64D2D66128A3B70B00FE414D /* QuantiBike */ = {
+			isa = PBXGroup;
+			children = (
+				6443023B28CA0B8400CB8A0A /* QuantiBike.entitlements */,
+				64BF299328A64ADE00937726 /* Info.plist */,
+				64D2D66228A3B70B00FE414D /* QuantiBikeApp.swift */,
+				64D2D66628A3B70D00FE414D /* Assets.xcassets */,
+				64D2D66828A3B70D00FE414D /* Preview Content */,
+				645ACDC528F43FCA009F9131 /* Models */,
+				645ACDCA28F43FCA009F9131 /* Ressources */,
+				645ACDD228F43FCA009F9131 /* Tools */,
+				645ACDCC28F43FCA009F9131 /* Views */,
+			);
+			path = QuantiBike;
+			sourceTree = "<group>";
+		};
+		64D2D66828A3B70D00FE414D /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				64D2D66928A3B70D00FE414D /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		64D2D65E28A3B70B00FE414D /* QuantiBike */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 64D2D66D28A3B70D00FE414D /* Build configuration list for PBXNativeTarget "QuantiBike" */;
+			buildPhases = (
+				64D2D65B28A3B70B00FE414D /* Sources */,
+				64D2D65C28A3B70B00FE414D /* Frameworks */,
+				64D2D65D28A3B70B00FE414D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QuantiBike;
+			productName = BasicProject;
+			productReference = 64D2D65F28A3B70B00FE414D /* QuantiBike.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		64D2D65728A3B70B00FE414D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1340;
+				LastUpgradeCheck = 1340;
+				TargetAttributes = {
+					64D2D65E28A3B70B00FE414D = {
+						CreatedOnToolsVersion = 13.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 64D2D65A28A3B70B00FE414D /* Build configuration list for PBXProject "QuantiBike" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 64D2D65628A3B70B00FE414D;
+			productRefGroup = 64D2D66028A3B70B00FE414D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				64D2D65E28A3B70B00FE414D /* QuantiBike */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		64D2D65D28A3B70B00FE414D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				64D2D66A28A3B70D00FE414D /* Preview Assets.xcassets in Resources */,
+				64D2D66728A3B70D00FE414D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		64D2D65B28A3B70B00FE414D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				645ACDDA28F43FCA009F9131 /* StartView.swift in Sources */,
+				645ACDD428F43FCA009F9131 /* AnnouncementHandler.swift in Sources */,
+				645ACDDC28F43FCA009F9131 /* DebugView.swift in Sources */,
+				645ACDD728F43FCA009F9131 /* LocationManager.swift in Sources */,
+				645ACDD928F43FCA009F9131 /* RoutingView.swift in Sources */,
+				645ACDDD28F43FCA009F9131 /* ContentView.swift in Sources */,
+				645ACDD828F43FCA009F9131 /* AppConfig.swift in Sources */,
+				645ACDD628F43FCA009F9131 /* LogItem.swift in Sources */,
+				645ACDD528F43FCA009F9131 /* LogManager.swift in Sources */,
+				645ACDDB28F43FCA009F9131 /* MapView.swift in Sources */,
+				64D2D66328A3B70B00FE414D /* QuantiBikeApp.swift in Sources */,
+				645ACDDE28F43FCA009F9131 /* GpxParser.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		64D2D66B28A3B70D00FE414D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		64D2D66C28A3B70D00FE414D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		64D2D66E28A3B70D00FE414D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuantiBike/QuantiBike.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"QuantiBike/Preview Content\"";
+				DEVELOPMENT_TEAM = GMDC8888FM;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuantiBike/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location is tracked while running the study";
+				INFOPLIST_KEY_NSMotionUsageDescription = "We will use your Airpods IMU Data to track head rotation";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.lehe.BasicProject;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		64D2D66F28A3B70D00FE414D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = QuantiBike/QuantiBike.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"QuantiBike/Preview Content\"";
+				DEVELOPMENT_TEAM = GMDC8888FM;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = QuantiBike/Info.plist;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Location is tracked while running the study";
+				INFOPLIST_KEY_NSMotionUsageDescription = "We will use your Airpods IMU Data to track head rotation";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportsDocumentBrowser = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.lehe.BasicProject;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		64D2D65A28A3B70B00FE414D /* Build configuration list for PBXProject "QuantiBike" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64D2D66B28A3B70D00FE414D /* Debug */,
+				64D2D66C28A3B70D00FE414D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		64D2D66D28A3B70D00FE414D /* Build configuration list for PBXNativeTarget "QuantiBike" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				64D2D66E28A3B70D00FE414D /* Debug */,
+				64D2D66F28A3B70D00FE414D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 64D2D65728A3B70B00FE414D /* Project object */;
+}
