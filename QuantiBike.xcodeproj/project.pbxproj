@@ -22,6 +22,7 @@
 		64D2D66328A3B70B00FE414D /* QuantiBikeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64D2D66228A3B70B00FE414D /* QuantiBikeApp.swift */; };
 		64D2D66728A3B70D00FE414D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D2D66628A3B70D00FE414D /* Assets.xcassets */; };
 		64D2D66A28A3B70D00FE414D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 64D2D66928A3B70D00FE414D /* Preview Assets.xcassets */; };
+		85DB5C992BC32F8500ED1523 /* LogItemServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DB5C982BC32F8500ED1523 /* LogItemServer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		64D2D66228A3B70B00FE414D /* QuantiBikeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantiBikeApp.swift; sourceTree = "<group>"; };
 		64D2D66628A3B70D00FE414D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		64D2D66928A3B70D00FE414D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		85DB5C982BC32F8500ED1523 /* LogItemServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogItemServer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +75,7 @@
 				645ACDC728F43FCA009F9131 /* LogManager.swift */,
 				645ACDC828F43FCA009F9131 /* LogItem.swift */,
 				645ACDC928F43FCA009F9131 /* LocationManager.swift */,
+				85DB5C982BC32F8500ED1523 /* LogItemServer.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 				645ACDDD28F43FCA009F9131 /* ContentView.swift in Sources */,
 				645ACDD828F43FCA009F9131 /* AppConfig.swift in Sources */,
 				645ACDD628F43FCA009F9131 /* LogItem.swift in Sources */,
+				85DB5C992BC32F8500ED1523 /* LogItemServer.swift in Sources */,
 				645ACDD528F43FCA009F9131 /* LogManager.swift in Sources */,
 				645ACDDB28F43FCA009F9131 /* MapView.swift in Sources */,
 				64D2D66328A3B70B00FE414D /* QuantiBikeApp.swift in Sources */,
@@ -360,7 +364,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"QuantiBike/Preview Content\"";
-				DEVELOPMENT_TEAM = GMDC8888FM;
+				DEVELOPMENT_TEAM = HLLVS4C8HQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuantiBike/Info.plist;
@@ -396,7 +400,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"QuantiBike/Preview Content\"";
-				DEVELOPMENT_TEAM = GMDC8888FM;
+				DEVELOPMENT_TEAM = HLLVS4C8HQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = QuantiBike/Info.plist;

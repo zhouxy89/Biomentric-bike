@@ -15,17 +15,15 @@ struct LogItem{
     let airpodMotionData : CMDeviceMotion?
     let phoneMotionData : CMDeviceMotion?
     let phoneBattery: Float
-    let brakeData: Float
     let locationData: CLLocation?
     
-    init(timestamp : TimeInterval,phoneBattery: Float, brakeData: Float, phoneAcceleration: CMAccelerometerData? = nil, airpodRotationRate: CMDeviceMotion? = nil, phoneRotationRate: CMDeviceMotion? = nil,locationData: CLLocation?){
+    init(timestamp : TimeInterval,phoneBattery: Float, phoneAcceleration: CMAccelerometerData? = nil, airpodRotationRate: CMDeviceMotion? = nil, phoneRotationRate: CMDeviceMotion? = nil,locationData: CLLocation?){
         self.timestamp = timestamp 
         self.phoneAcceleration = phoneAcceleration
         self.airpodMotionData = airpodRotationRate
         self.phoneMotionData = phoneRotationRate
         self.phoneBattery = phoneBattery
         self.locationData = locationData
-        self.brakeData = brakeData
         //print("Got logItem: \(dictionary)")
     }
     var dictionary: [String:Any]{
@@ -35,8 +33,7 @@ struct LogItem{
                 "phoneAcceleration" : preparePhoneAcc(),
                 "phoneMotionData" : prepareMotionData(motionData: phoneMotionData),
                 "airpodMotionData" : prepareMotionData(motionData: airpodMotionData),
-                "locationData": prepareLocationData(locationData: locationData),
-                "breakData":prepareBreakData()
+                "locationData": prepareLocationData(locationData: locationData)
             ]
     }
     var data: Data {return (try? JSONSerialization.data(withJSONObject: dictionary)) ?? Data() }

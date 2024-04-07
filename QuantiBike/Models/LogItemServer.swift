@@ -1,3 +1,10 @@
+//
+//  LogItemServer.swift
+//  QuantiBike
+//
+//  Created by Mohamed Mahdi on 2024-04-07.
+//
+
 import Foundation
 import Network
 import CoreMotion
