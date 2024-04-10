@@ -12,6 +12,7 @@ struct DebugView: View {
     @Binding var subjectId: String
     @Binding var debug: Bool
     @StateObject var logManager = LogManager()
+    @EnvironmentObject var logItemServer: LogItemServer
     
     var timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     var startTime = Date()
@@ -34,7 +35,10 @@ struct DebugView: View {
                         Image(systemName: "clock")
                         Text(stringFromTime(interval: runtime)).onReceive(timer) { _ in
                                 runtime = Date().timeIntervalSinceReferenceDate - startTime.timeIntervalSinceReferenceDate
-                            logManager.triggerUpdate(runtime: runtime);
+                                let brakeData: Float = logItemServer.latestBrakeData
+                                let pedalDataR: Float = logItemServer.latestPedalDataR
+                                let pedalDataL: Float = logItemServer.latestPedalDataL
+                                logManager.triggerUpdate(runtime: runtime, brakeData: brakeData, pedalDataR: pedalDataR, pedalDataL: pedalDataL)
                         }.font(.subheadline)
                     }
                     HStack{

@@ -9,30 +9,35 @@ import Foundation
 import CoreMotion
 import CoreLocation
 
-struct LogItem{
-    let timestamp : TimeInterval
-    let phoneAcceleration : CMAccelerometerData?
-    let airpodMotionData : CMDeviceMotion?
-    let phoneMotionData : CMDeviceMotion?
+struct LogItem {
+    let timestamp: TimeInterval
+    let phoneAcceleration: CMAccelerometerData?
+    let phoneMotionData: CMDeviceMotion?
     let phoneBattery: Float
+    let brakeData: Float
+    let pedalDataR: Float
+    let pedalDataL: Float
     let locationData: CLLocation?
-    
-    init(timestamp : TimeInterval,phoneBattery: Float, phoneAcceleration: CMAccelerometerData? = nil, airpodRotationRate: CMDeviceMotion? = nil, phoneRotationRate: CMDeviceMotion? = nil,locationData: CLLocation?){
-        self.timestamp = timestamp 
+
+    init(timestamp: TimeInterval, phoneBattery: Float, brakeData: Float, pedalDataR: Float, pedalDataL: Float, phoneAcceleration: CMAccelerometerData? = nil, phoneMotionData: CMDeviceMotion? = nil, locationData: CLLocation?) {
+        self.timestamp = timestamp
         self.phoneAcceleration = phoneAcceleration
-        self.airpodMotionData = airpodRotationRate
-        self.phoneMotionData = phoneRotationRate
+        self.phoneMotionData = phoneMotionData
         self.phoneBattery = phoneBattery
+        self.brakeData = brakeData
+        self.pedalDataR = pedalDataR
+        self.pedalDataL = pedalDataL
         self.locationData = locationData
-        //print("Got logItem: \(dictionary)")
     }
+    
     var dictionary: [String:Any]{
                 return [
                 "timestamp": String(timestamp),
                 "phoneBattery": String(phoneBattery),
+                "pedalWeight": preparePedalData(),
+                "breakData": String(brakeData),
                 "phoneAcceleration" : preparePhoneAcc(),
                 "phoneMotionData" : prepareMotionData(motionData: phoneMotionData),
-                "airpodMotionData" : prepareMotionData(motionData: airpodMotionData),
                 "locationData": prepareLocationData(locationData: locationData)
             ]
     }
@@ -47,6 +52,14 @@ struct LogItem{
             "timestamp":phoneAcceleration?.timestamp.description ?? ""
         ]
     }
+    
+    func preparePedalData() -> [String: String] {
+         return [
+             "R": String(pedalDataR),
+             "L": String(pedalDataL),
+         ]
+     }
+
     func prepareMotionData(motionData: CMDeviceMotion?) -> [String:Any]{
         var motionArr : [String:Any] = [String:Any]()
         motionArr["quaternion"] = [

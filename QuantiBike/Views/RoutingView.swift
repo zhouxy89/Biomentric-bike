@@ -9,6 +9,7 @@ import SwiftUI
 import AVFoundation
 
 struct RoutingView: View {
+    @EnvironmentObject var logItemServer: LogItemServer
     @State var logManager = LogManager()
     @Binding var subjectId: String
     @Binding var subjectSet: Bool
@@ -51,8 +52,14 @@ struct RoutingView: View {
                                 //Image(systemName: "clock")
                                 Text("\(String(format: "%03d", Int(runtime)))")
                                     .onReceive(timer) { _ in
-                                        runtime = Date().timeIntervalSinceReferenceDate - startTime.timeIntervalSinceReferenceDate
-                                        logManager.triggerUpdate(runtime: runtime);
+                                            runtime = Date().timeIntervalSinceReferenceDate - startTime.timeIntervalSinceReferenceDate
+                                            // Assuming you have a way to fetch or receive the latest brakeData, pedalDataR, and pedalDataL
+                                            let brakeData: Float = logItemServer.latestBrakeData
+                                            let pedalDataR: Float = logItemServer.latestPedalDataR
+                                            let pedalDataL: Float = logItemServer.latestPedalDataL
+                                            print("Brake Data: \(brakeData), Pedal Data R: \(pedalDataR), Pedal Data L: \(pedalDataL)")
+
+                                            logManager.triggerUpdate(runtime: runtime, brakeData: brakeData, pedalDataR: pedalDataR, pedalDataL: pedalDataL)
                                     }
                             }
                             Button("Finish",role:.destructive,action:{

@@ -10,10 +10,13 @@ import Network
 import CoreMotion
 import CoreLocation
 
-class LogItemServer {
+class LogItemServer : ObservableObject {
+    @Published var latestBrakeData: Float = 0.0
+    @Published var latestPedalDataR: Float = 0.0
+    @Published var latestPedalDataL: Float = 0.0
+    
     private var listener: NWListener
     private var connectedClients: [NWConnection] = []
-    var onBrakeDataReceived: ((Float) -> Void)?
 
     init(port: NWEndpoint.Port) throws {
         listener = try NWListener(using: .tcp, on: port)
@@ -41,8 +44,19 @@ class LogItemServer {
         connectedClients.append(connection)
 
         connection.receive(minimumIncompleteLength: 1, maximumLength: 4096) { (data, _, isComplete, error) in
-            if let data = data, !data.isEmpty, let brakeDataString = String(data: data, encoding: .utf8), let brakeData = Float(brakeDataString) {
-                self.onBrakeDataReceived?(brakeData)
+            if let data = data, !data.isEmpty {
+                let dataString = String(data: data, encoding: .utf8)
+                let dataComponents = dataString?.split(separator: "-").map(String.init)
+                if let components = dataComponents, components.count == 3,
+                   let brakeData = Float(components[0]),
+                   let pedalDataR = Float(components[1]),
+                   let pedalDataL = Float(components[2]) {
+                    DispatchQueue.main.async {
+                                  self.latestBrakeData = brakeData
+                                  self.latestPedalDataR = pedalDataR
+                                  self.latestPedalDataL = pedalDataL
+                              }
+                }
             }
             if isComplete || error != nil {
                 connection.cancel()
@@ -50,6 +64,8 @@ class LogItemServer {
             }
         }
     }
+
+
 
     func stop() {
         listener.cancel()

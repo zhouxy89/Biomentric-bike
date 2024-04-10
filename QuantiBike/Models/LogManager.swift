@@ -1,4 +1,3 @@
-//
 //  LogManager.swift
 //  QuantiBike
 //
@@ -11,7 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 
-class LogManager:NSObject,ObservableObject{
+class LogManager: NSObject, ObservableObject {
     private var csvData: [LogItem] = []
     @Published var motionManager = CMMotionManager()
     @Published var headPhoneMotionManager = CMHeadphoneMotionManager()
@@ -29,6 +28,7 @@ class LogManager:NSObject,ObservableObject{
     var userAltitude: String{
         return "\(LocationManager.shared.lastLocation?.altitude ?? 0)"
     }
+    
     
     override init() {
         super.init()
@@ -72,16 +72,20 @@ class LogManager:NSObject,ObservableObject{
         return dateString
     }
     //Timer handler
-    func triggerUpdate(runtime:TimeInterval){
+    func triggerUpdate(runtime: TimeInterval, brakeData: Float, pedalDataR: Float, pedalDataL: Float) {
+        print("\(brakeData)-\(pedalDataR)-\(pedalDataL)")
         csvData.append(LogItem(
             timestamp: runtime,
             phoneBattery: UIDevice.current.batteryLevel,
+            brakeData: brakeData,
+            pedalDataR: pedalDataR,
+            pedalDataL: pedalDataL,
             phoneAcceleration: motionManager.accelerometerData,
-            airpodRotationRate: headPhoneMotionManager.deviceMotion,
-            phoneRotationRate: motionManager.deviceMotion,
+            phoneMotionData: motionManager.deviceMotion,
             locationData: LocationManager.shared.lastLocation
         ))
     }
+
     func stopUpdates(){
         motionManager.stopGyroUpdates()
         motionManager.stopAccelerometerUpdates()
@@ -149,3 +153,4 @@ class LogManager:NSObject,ObservableObject{
         }
     }
 }
+
