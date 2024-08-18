@@ -72,12 +72,12 @@ class LogManager: NSObject, ObservableObject {
         return dateString
     }
     //Timer handler
-    func triggerUpdate(runtime: TimeInterval, brakeData: Float, pedalDataR: Float, pedalDataL: Float) {
-        print("\(brakeData)-\(pedalDataR)-\(pedalDataL)")
+    func triggerUpdate(runtime: TimeInterval, brakeData: Int, cadence: String, pedalDataR: Int, pedalDataL: Float) {
         csvData.append(LogItem(
             timestamp: runtime,
             phoneBattery: UIDevice.current.batteryLevel,
             brakeData: brakeData,
+            cadence: cadence,
             pedalDataR: pedalDataR,
             pedalDataL: pedalDataL,
             phoneAcceleration: motionManager.accelerometerData,

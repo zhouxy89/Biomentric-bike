@@ -3,6 +3,7 @@ import SwiftUI
 @main
 struct QuantiBikeApp: App {
     var logItemServer: LogItemServer?
+    @State var logManager = LogManager()
 
     init() {
         LocationManager.shared.startTracking()
@@ -11,6 +12,7 @@ struct QuantiBikeApp: App {
             server.start()
             logItemServer = server
         } catch {
+            logManager.saveCSV()
             print("An error occurred initializing LogItemServer: \(error)")
         }
     }

@@ -14,32 +14,45 @@ struct LogItem {
     let phoneAcceleration: CMAccelerometerData?
     let phoneMotionData: CMDeviceMotion?
     let phoneBattery: Float
-    let brakeData: Float
-    let pedalDataR: Float
+    let brakeData: Int
+    let cadence: String
+    let pedalDataR: Int
     let pedalDataL: Float
     let locationData: CLLocation?
 
-    init(timestamp: TimeInterval, phoneBattery: Float, brakeData: Float, pedalDataR: Float, pedalDataL: Float, phoneAcceleration: CMAccelerometerData? = nil, phoneMotionData: CMDeviceMotion? = nil, locationData: CLLocation?) {
+    init(timestamp: TimeInterval, phoneBattery: Float, brakeData: Int, cadence: String, pedalDataR: Int, pedalDataL: Float, phoneAcceleration: CMAccelerometerData? = nil, phoneMotionData: CMDeviceMotion? = nil, locationData: CLLocation?) {
         self.timestamp = timestamp
         self.phoneAcceleration = phoneAcceleration
         self.phoneMotionData = phoneMotionData
         self.phoneBattery = phoneBattery
         self.brakeData = brakeData
+        self.cadence = cadence
         self.pedalDataR = pedalDataR
         self.pedalDataL = pedalDataL
         self.locationData = locationData
     }
     
-    var dictionary: [String:Any]{
-                return [
-                "timestamp": String(timestamp),
-                "phoneBattery": String(phoneBattery),
-                "pedalWeight": preparePedalData(),
-                "breakData": String(brakeData),
-                "phoneAcceleration" : preparePhoneAcc(),
-                "phoneMotionData" : prepareMotionData(motionData: phoneMotionData),
-                "locationData": prepareLocationData(locationData: locationData)
-            ]
+    var dictionary: [String: Any] {
+        var result = [
+            "timestamp": String(timestamp),
+            "phoneBattery": String(phoneBattery),
+            "pedalWeight": preparePedalData(),
+            "brakeData": String(brakeData),
+            "cadence": String(cadence),
+            "acceleration": preparePhoneAcc(),
+            "locationData": prepareLocationData(locationData: locationData),
+            "unixTimeStamp": String(Date().timeIntervalSince1970)
+        ] as [String: Any]
+
+        // Assuming 'phoneMotionData' is defined somewhere
+        let motionData = prepareMotionData(motionData: phoneMotionData)
+
+        // Manually merging the motion data dictionary into the main dictionary
+        for (key, value) in motionData {
+            result[key] = value
+        }
+
+        return result
     }
     var data: Data {return (try? JSONSerialization.data(withJSONObject: dictionary)) ?? Data() }
     var json: String { return String(data: data,encoding: .utf8) ?? String() }

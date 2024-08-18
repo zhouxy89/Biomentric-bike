@@ -53,13 +53,13 @@ struct RoutingView: View {
                                 Text("\(String(format: "%03d", Int(runtime)))")
                                     .onReceive(timer) { _ in
                                             runtime = Date().timeIntervalSinceReferenceDate - startTime.timeIntervalSinceReferenceDate
-                                            // Assuming you have a way to fetch or receive the latest brakeData, pedalDataR, and pedalDataL
-                                            let brakeData: Float = logItemServer.latestBrakeData
-                                            let pedalDataR: Float = logItemServer.latestPedalDataR
+                                            let brakeData: Int = logItemServer.latestBrakeData
+                                            let cadence: String = logItemServer.latestCadence
+                                            let pedalDataR: Int = logItemServer.latestPedalDataR
                                             let pedalDataL: Float = logItemServer.latestPedalDataL
                                             print("Brake Data: \(brakeData), Pedal Data R: \(pedalDataR), Pedal Data L: \(pedalDataL)")
 
-                                            logManager.triggerUpdate(runtime: runtime, brakeData: brakeData, pedalDataR: pedalDataR, pedalDataL: pedalDataL)
+                                            logManager.triggerUpdate(runtime: runtime, brakeData: brakeData, cadence: cadence, pedalDataR: pedalDataR, pedalDataL: pedalDataL)
                                     }
                             }
                             Button("Finish",role:.destructive,action:{

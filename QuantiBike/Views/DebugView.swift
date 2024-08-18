@@ -35,20 +35,27 @@ struct DebugView: View {
                         Image(systemName: "clock")
                         Text(stringFromTime(interval: runtime)).onReceive(timer) { _ in
                                 runtime = Date().timeIntervalSinceReferenceDate - startTime.timeIntervalSinceReferenceDate
-                                let brakeData: Float = logItemServer.latestBrakeData
-                                let pedalDataR: Float = logItemServer.latestPedalDataR
+                                let brakeData: Int = logItemServer.latestBrakeData
+                                let cadence: String = logItemServer.latestCadence
+                                let pedalDataR: Int = logItemServer.latestPedalDataR
                                 let pedalDataL: Float = logItemServer.latestPedalDataL
-                                logManager.triggerUpdate(runtime: runtime, brakeData: brakeData, pedalDataR: pedalDataR, pedalDataL: pedalDataL)
+                                logManager.triggerUpdate(runtime: runtime, brakeData: brakeData, cadence: cadence, pedalDataR: pedalDataR, pedalDataL: pedalDataL)
                         }.font(.subheadline)
                     }
                     HStack{
-                        Image(systemName: "airpodspro")
-                        if logManager.headPhoneMotionManager.deviceMotion != nil{
-                            //More data available like acceleration. See docs for CMDeviceMotion
-                            Text("\(logManager.headPhoneMotionManager.deviceMotion!)").font(.subheadline)
-                        }else{
-                            Text("No Airpod Data present").font(.subheadline)
-                        }
+                        Image(systemName: "brake")
+                        //Bike Brake Data
+                       Text("Brake: \(logItemServer.latestBrakeData)").font(.subheadline)
+                    }
+                    HStack{
+                        Image(systemName: "PedalWeight")
+                        //Bike Brake Data
+                        Text("Right: \(logItemServer.latestPedalDataR), Left: \(logItemServer.latestPedalDataL)").font(.subheadline)
+                    }
+                    HStack{
+                        Image(systemName: "cadence")
+                        //Bike Brake Data
+                       Text("Cadence: \(logItemServer.viewCadence)").font(.subheadline)
                     }
                     HStack{
                         Image(systemName: "iphone")
