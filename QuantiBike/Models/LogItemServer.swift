@@ -8,35 +8,19 @@ struct ConnectionData {
 }
 
 struct ClientData {
-    var brakeData: Int = 0
-    var pedalDataR: Int = 0
-    var pedalDataL: Float = 0.0
-    var latestCadence: String = "NaN"
+    var fsr1: Int = 0
+    var fsr2: Int = 0
+    var fsr3: Int = 0
+    var fsr4: Int = 0
 }
 
-
 class LogItemServer: ObservableObject {
-    private var cadence: String = "NaN"
     
-    @Published var latestBrakeData: Int = 0
-    @Published var latestPedalDataR: Int = 0
-    @Published var latestPedalDataL: Float = 0.0
-    @Published var viewCadence: String = "NaN"
-    var latestCadence: String {
-        set {
-            DispatchQueue.main.async { [weak self] in
-                self?.cadence = newValue
-            }
-        }
-        get {
-            let currentCadence = cadence
-            DispatchQueue.main.async { [weak self] in
-                self?.cadence = "NaN" // Reset to "NaN" after being accessed
-            }
-            return currentCadence
-        }
-    }
-    
+    @Published var latestFSR1: Int = 0
+    @Published var latestFSR2: Int = 0
+    @Published var latestFSR3: Int = 0
+    @Published var latestFSR4: Int = 0
+
     private var listener: NWListener
     private var connections: [ConnectionData] = []
 
@@ -48,7 +32,6 @@ class LogItemServer: ObservableObject {
         listener.stateUpdateHandler = handleStateChange(state:)
         listener.newConnectionHandler = handleNewConnection(connection:)
         listener.start(queue: .main)
-        
     }
 
     private func handleStateChange(state: NWListener.State) {
@@ -89,40 +72,42 @@ class LogItemServer: ObservableObject {
     private func processData(_ data: Data, for id: UUID) {
         if let index = connections.firstIndex(where: { $0.id == id }) {
             if let dataString = String(data: data, encoding: .utf8) {
-                let dataComponents = dataString.split(separator: "=").map(String.init)
-                if dataComponents.count == 2 {
-                    let key = dataComponents[0]
-                    let stringValue = dataComponents[1]
-                    if let floatValue = Float(stringValue) { // Safely converting string to float
-                        DispatchQueue.main.async { [weak self] in
-                            guard let self = self else { return }
-                            var connectionData = self.connections[index]
-                    
-                            switch key {
-                            case "brakeData":
-                                connectionData.clientData.brakeData = Int(floatValue)
-                                self.latestBrakeData = Int(floatValue) // Update shared property
-                            case "pedalDataR":
-                                connectionData.clientData.pedalDataR = Int(floatValue)
-                                self.latestPedalDataR = Int(floatValue) // Update shared property
-                            case "pedalDataL":
-                                connectionData.clientData.pedalDataL = floatValue
-                                self.latestPedalDataL = floatValue // Update shared property
-                            case "cadence":
-                                connectionData.clientData.latestCadence = stringValue
-                                self.latestCadence = stringValue
-                                self.viewCadence = stringValue
-                            default:
-                                break
+                let keyValuePairs = dataString.split(separator: "&")
+
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    var connectionData = self.connections[index]
+
+                    for pair in keyValuePairs {
+                        let components = pair.split(separator: "=").map(String.init)
+                        if components.count == 2 {
+                            let key = components[0]
+                            let valueString = components[1]
+                            if let intValue = Int(valueString) {
+                                switch key {
+                                case "fsr1":
+                                    connectionData.clientData.fsr1 = intValue
+                                    self.latestFSR1 = intValue
+                                case "fsr2":
+                                    connectionData.clientData.fsr2 = intValue
+                                    self.latestFSR2 = intValue
+                                case "fsr3":
+                                    connectionData.clientData.fsr3 = intValue
+                                    self.latestFSR3 = intValue
+                                case "fsr4":
+                                    connectionData.clientData.fsr4 = intValue
+                                    self.latestFSR4 = intValue
+                                default:
+                                    break
+                                }
                             }
-                            self.connections[index] = connectionData
                         }
                     }
+                    self.connections[index] = connectionData
                 }
             }
         }
     }
-
 
     func stop() {
         listener.cancel()
