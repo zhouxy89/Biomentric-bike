@@ -18,16 +18,17 @@ struct DebugView: View {
             Spacer()
 
             List {
-                ForEach(Array(logItemServer.logManagers.keys), id: \.\self) { boardID in
-                    if let manager = logItemServer.logManagers[boardID] {
-                        Section(header: Text("Board: \(boardID)")) {
-                            Text("FSR1: \(manager.latestFSR1)")
-                            Text("FSR2: \(manager.latestFSR2)")
-                            Text("FSR3: \(manager.latestFSR3)")
-                            Text("FSR4: \(manager.latestFSR4)")
-                        }
-                    }
-                }
+                ForEach(Array(logItemServer.logManagers.keys), id: \.self) { boardID in
+    if let manager = logItemServer.logManagers[boardID] {
+        Section(header: Text("Board: \(boardID)")) {
+            Text("FSR1: \(manager.latestFSR1)")
+            Text("FSR2: \(manager.latestFSR2)")
+            Text("FSR3: \(manager.latestFSR3)")
+            Text("FSR4: \(manager.latestFSR4)")
+        }
+    }
+}
+
             }
 
             Spacer()
