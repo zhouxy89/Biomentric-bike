@@ -4,25 +4,12 @@ import Network
 struct ConnectionData {
     let connection: NWConnection
     let id: UUID
-    var clientData: ClientData
-}
-
-struct ClientData {
-    var fsr1: Int = 0
-    var fsr2: Int = 0
-    var fsr3: Int = 0
-    var fsr4: Int = 0
 }
 
 class LogItemServer: ObservableObject {
-    
-    @Published var latestFSR1: Int = 0
-    @Published var latestFSR2: Int = 0
-    @Published var latestFSR3: Int = 0
-    @Published var latestFSR4: Int = 0
-
     private var listener: NWListener
     private var connections: [ConnectionData] = []
+    var logManagers: [String: LogManager] = [:]  // Store separate LogManager per board
 
     init(port: NWEndpoint.Port) throws {
         listener = try NWListener(using: .tcp, on: port)
@@ -46,9 +33,7 @@ class LogItemServer: ObservableObject {
     }
 
     private func handleNewConnection(connection: NWConnection) {
-        connections.forEach { $0.connection.cancel() }
-        connections.removeAll()
-        let connectionData = ConnectionData(connection: connection, id: UUID(), clientData: ClientData())
+        let connectionData = ConnectionData(connection: connection, id: UUID())
         connections.append(connectionData)
         processConnection(connectionData)
     }
@@ -59,7 +44,7 @@ class LogItemServer: ObservableObject {
             guard let self = self else { return }
 
             if let data = data, !data.isEmpty {
-                self.processData(data, for: connectionData.id)
+                self.processData(data)
             }
 
             if isComplete || error != nil {
@@ -69,42 +54,40 @@ class LogItemServer: ObservableObject {
         }
     }
 
-    private func processData(_ data: Data, for id: UUID) {
-        if let index = connections.firstIndex(where: { $0.id == id }) {
-            if let dataString = String(data: data, encoding: .utf8) {
-                let keyValuePairs = dataString.split(separator: "&")
+    private func processData(_ data: Data) {
+        if let dataString = String(data: data, encoding: .utf8) {
+            let pairs = dataString.split(separator: "&").map { String($0) }
+            var parsedData: [String: String] = [:]
 
-                DispatchQueue.main.async { [weak self] in
-                    guard let self = self else { return }
-                    var connectionData = self.connections[index]
-
-                    for pair in keyValuePairs {
-                        let components = pair.split(separator: "=").map(String.init)
-                        if components.count == 2 {
-                            let key = components[0]
-                            let valueString = components[1]
-                            if let intValue = Int(valueString) {
-                                switch key {
-                                case "fsr1":
-                                    connectionData.clientData.fsr1 = intValue
-                                    self.latestFSR1 = intValue
-                                case "fsr2":
-                                    connectionData.clientData.fsr2 = intValue
-                                    self.latestFSR2 = intValue
-                                case "fsr3":
-                                    connectionData.clientData.fsr3 = intValue
-                                    self.latestFSR3 = intValue
-                                case "fsr4":
-                                    connectionData.clientData.fsr4 = intValue
-                                    self.latestFSR4 = intValue
-                                default:
-                                    break
-                                }
-                            }
-                        }
-                    }
-                    self.connections[index] = connectionData
+            for pair in pairs {
+                let parts = pair.split(separator: "=", maxSplits: 1).map { String($0) }
+                if parts.count == 2 {
+                    parsedData[parts[0]] = parts[1]
                 }
+            }
+
+            guard let boardID = parsedData["board"] else {
+                print("⚠️ No board ID in data!")
+                return
+            }
+
+            if logManagers[boardID] == nil {
+                let newManager = LogManager()
+                newManager.setSubjectId(subjectId: boardID)
+                newManager.setMode(mode: "field")
+                newManager.setStartTime(startTime: Date())
+                logManagers[boardID] = newManager
+                print("✅ Created new LogManager for \(boardID)")
+            }
+
+            if let manager = logManagers[boardID] {
+                let runtime = Date().timeIntervalSinceReferenceDate
+                let fsr1 = Int(parsedData["fsr1"] ?? "0") ?? 0
+                let fsr2 = Int(parsedData["fsr2"] ?? "0") ?? 0
+                let fsr3 = Int(parsedData["fsr3"] ?? "0") ?? 0
+                let fsr4 = Int(parsedData["fsr4"] ?? "0") ?? 0
+
+                manager.triggerUpdate(runtime: runtime, fsr1: fsr1, fsr2: fsr2, fsr3: fsr3, fsr4: fsr4)
             }
         }
     }
