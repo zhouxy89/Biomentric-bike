@@ -60,6 +60,7 @@ struct DebugView: View {
 struct DebugView_Previews: PreviewProvider {
     static var previews: some View {
         DebugView(subjectId: .constant("test"), debug: .constant(true))
-            .environmentObject(LogItemServer(port: 12345))
+            .environmentObject(try! LogItemServer(port: 12345))
     }
 }
+
