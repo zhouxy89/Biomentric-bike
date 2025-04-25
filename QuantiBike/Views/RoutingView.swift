@@ -61,8 +61,12 @@ struct RoutingView: View {
                                         logManager.triggerUpdate(runtime: runtime, fsr1: fsr1, fsr2: fsr2, fsr3: fsr3, fsr4: fsr4)
                                     }
                             }
+                           
+
                             Button("Finish",role:.destructive,action:{
-                                logManager.saveCSV()
+                                for (_, manager) in logItemServer.logManagers {
+        manager.saveCSV()
+    }
                                 subjectSet = false
                             }).buttonStyle(.borderedProminent).cornerRadius(10).padding(10)
                         }.background(Color(.black).cornerRadius(10))
