@@ -78,10 +78,14 @@ struct DebugView: View {
                     }
                 }
                 Spacer()
-                Button("Save CSV",role:.destructive,action:{
-                    logManager.saveCSV()
-                    debug = false
-                }).buttonStyle(.borderedProminent)
+                Button("Save CSV", role: .destructive, action: {
+    for (_, manager) in logItemServer.logManagers {
+        manager.saveCSV()
+    }
+    debug = false
+}).buttonStyle(.borderedProminent)
+
+                
             }
         }.onAppear(perform: {
             preventSleep()
