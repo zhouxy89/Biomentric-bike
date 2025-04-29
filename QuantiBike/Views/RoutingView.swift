@@ -24,7 +24,7 @@ struct RoutingView: View {
                 .ignoresSafeArea()
                 .overlay(alignment: .bottomTrailing) {
                     VStack {
-                        ForEach(Array(logItemServer.logManagers.keys), id: \.\self) { boardID in
+                        ForEach(Array(logItemServer.logManagers.keys), id: \.self) { boardID in
                             if let manager = logItemServer.logManagers[boardID] {
                                 VStack(alignment: .leading) {
                                     Text("Board: \(boardID)")
@@ -76,8 +76,11 @@ struct RoutingView: View {
 
 struct RoutingView_Previews: PreviewProvider {
     static var previews: some View {
-        RoutingView(subjectId: .constant("test"), subjectSet: .constant(true))
-            .environmentObject(try! LogItemServer(port: 12345))
+        if let server = try? LogItemServer(port: 12345) {
+            RoutingView(subjectId: .constant("test"), subjectSet: .constant(true))
+                .environmentObject(server)
+        } else {
+            Text("Failed to start preview.")
+        }
     }
 }
-
