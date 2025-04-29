@@ -18,6 +18,11 @@ class LogManager: NSObject, ObservableObject {
     private var mode: String = "not_defined"
 
     @Published var runtime = 0.0
+    
+    @Published var latestFSR1: Int = 0
+    @Published var latestFSR2: Int = 0
+    @Published var latestFSR3: Int = 0
+    @Published var latestFSR4: Int = 0
 
     var latitude: String {
         return "\(LocationManager.shared.lastLocation?.coordinate.latitude ?? 0)"
@@ -53,6 +58,11 @@ class LogManager: NSObject, ObservableObject {
     }
 
     func triggerUpdate(runtime: TimeInterval, fsr1: Int, fsr2: Int, fsr3: Int, fsr4: Int) {
+        self.latestFSR1 = fsr1
+        self.latestFSR2 = fsr2
+        self.latestFSR3 = fsr3
+        self.latestFSR4 = fsr4
+
         csvData.append(LogItem(
             timestamp: runtime,
             phoneBattery: UIDevice.current.batteryLevel,
