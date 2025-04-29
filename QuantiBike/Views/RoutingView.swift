@@ -8,9 +8,6 @@ import SwiftUI
 import AVFoundation
 
 
-import SwiftUI
-import MapKit
-
 struct RoutingView: View {
     @EnvironmentObject var logItemServer: LogItemServer
     @Binding var subjectId: String
