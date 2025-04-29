@@ -8,48 +8,46 @@ import SwiftUI
 import AVFoundation
 
 
-struct RoutingView: View {
-    @EnvironmentObject var logItemServer: LogItemServer
+struct DebugView: View {
     @Binding var subjectId: String
-    @Binding var subjectSet: Bool
-    @State var currentAnnouncement: RouteAnnouncement?
+    @Binding var debug: Bool
+    @EnvironmentObject var logItemServer: LogItemServer
 
     var timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     @State var startTime = Date()
-    @State var runtime: TimeInterval = 0.0
+    @State var runtime = 0.0
 
     var body: some View {
         VStack {
-            MapView(announcement: $currentAnnouncement)
-                .ignoresSafeArea()
-                .overlay(alignment: .bottomTrailing) {
-                    VStack {
-                        ForEach(Array(logItemServer.logManagers.keys), id: \.self) { boardID in
-                            if let manager = logItemServer.logManagers[boardID] {
-                                VStack(alignment: .leading) {
-                                    Text("Board: \(boardID)")
-                                    Text("FSR1: \(manager.latestFSR1)")
-                                    Text("FSR2: \(manager.latestFSR2)")
-                                    Text("FSR3: \(manager.latestFSR3)")
-                                    Text("FSR4: \(manager.latestFSR4)")
-                                }
-                                .padding()
-                                .background(Color.black.opacity(0.6))
-                                .cornerRadius(10)
-                                .foregroundColor(.white)
-                            }
-                        }
+            HStack {
+                Image(systemName: "bicycle")
+                Text("QuantiBike Debug").font(.largeTitle)
+            }
+            Spacer()
 
-                        Button("Finish", role: .destructive) {
-                            for (_, manager) in logItemServer.logManagers {
-                                manager.saveCSV()
-                            }
-                            subjectSet = false
+            List {
+                ForEach(Array(logItemServer.logManagers.keys), id: \.self) { boardID in
+                    if let manager = logItemServer.logManagers[boardID] {
+                        Section(header: Text("Board: \(boardID)")) {
+                            Text("FSR1: \(manager.latestFSR1)")
+                            Text("FSR2: \(manager.latestFSR2)")
+                            Text("FSR3: \(manager.latestFSR3)")
+                            Text("FSR4: \(manager.latestFSR4)")
                         }
-                        .buttonStyle(.borderedProminent)
-                        .padding()
                     }
                 }
+            }
+
+            Spacer()
+
+            Button("Save All CSVs", role: .destructive) {
+                for (_, manager) in logItemServer.logManagers {
+                    manager.saveCSV()
+                }
+                debug = false
+            }
+            .buttonStyle(.borderedProminent)
+            .padding()
         }
         .onAppear {
             preventSleep()
@@ -57,13 +55,6 @@ struct RoutingView: View {
         }
         .onReceive(timer) { _ in
             runtime = Date().timeIntervalSinceReferenceDate - startTime.timeIntervalSinceReferenceDate
-            for (_, manager) in logItemServer.logManagers {
-                let fsr1 = manager.latestFSR1
-                let fsr2 = manager.latestFSR2
-                let fsr3 = manager.latestFSR3
-                let fsr4 = manager.latestFSR4
-                manager.triggerUpdate(runtime: runtime, fsr1: fsr1, fsr2: fsr2, fsr3: fsr3, fsr4: fsr4)
-            }
         }
     }
 
@@ -74,10 +65,10 @@ struct RoutingView: View {
     }
 }
 
-struct RoutingView_Previews: PreviewProvider {
+struct DebugView_Previews: PreviewProvider {
     static var previews: some View {
         if let server = try? LogItemServer(port: 12345) {
-            RoutingView(subjectId: .constant("test"), subjectSet: .constant(true))
+            DebugView(subjectId: .constant("test"), debug: .constant(true))
                 .environmentObject(server)
         } else {
             Text("Failed to start preview.")
