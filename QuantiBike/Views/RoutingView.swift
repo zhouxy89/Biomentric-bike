@@ -7,7 +7,6 @@ import MapKit
 import SwiftUI
 import AVFoundation
 
-
 struct RoutingView: View {
     @EnvironmentObject var logItemServer: LogItemServer
     @Binding var subjectId: String
@@ -24,21 +23,7 @@ struct RoutingView: View {
                 .ignoresSafeArea()
                 .overlay(alignment: .bottomTrailing) {
                     VStack {
-                        ForEach(Array(logItemServer.logManagers.keys), id: \.self) { boardID in
-                            if let manager = logItemServer.logManagers[boardID] {
-                                VStack(alignment: .leading) {
-                                    Text("Board: \(boardID)")
-                                    Text("FSR1: \(manager.latestFSR1)")
-                                    Text("FSR2: \(manager.latestFSR2)")
-                                    Text("FSR3: \(manager.latestFSR3)")
-                                    Text("FSR4: \(manager.latestFSR4)")
-                                }
-                                .padding()
-                                .background(Color.black.opacity(0.6))
-                                .cornerRadius(10)
-                                .foregroundColor(.white)
-                            }
-                        }
+                        boardStatusOverlay()
 
                         Button("Finish", role: .destructive) {
                             for (_, manager) in logItemServer.logManagers {
@@ -63,6 +48,25 @@ struct RoutingView: View {
                 let fsr3 = manager.latestFSR3
                 let fsr4 = manager.latestFSR4
                 manager.triggerUpdate(runtime: runtime, fsr1: fsr1, fsr2: fsr2, fsr3: fsr3, fsr4: fsr4)
+            }
+        }
+    }
+
+    @ViewBuilder
+    func boardStatusOverlay() -> some View {
+        ForEach(logItemServer.logManagers.keys.sorted(), id: \.self) { boardID in
+            if let manager = logItemServer.logManagers[boardID] {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("🟢 Board: \(boardID)").bold()
+                    Text("FSR1: \(manager.latestFSR1)")
+                    Text("FSR2: \(manager.latestFSR2)")
+                    Text("FSR3: \(manager.latestFSR3)")
+                    Text("FSR4: \(manager.latestFSR4)")
+                }
+                .padding()
+                .background(Color.black.opacity(0.6))
+                .cornerRadius(10)
+                .foregroundColor(.white)
             }
         }
     }
