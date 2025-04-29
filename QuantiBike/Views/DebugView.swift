@@ -18,17 +18,17 @@ struct DebugView: View {
             Spacer()
 
             List {
-    ForEach(Array(logItemServer.logManagers.keys), id: \.self) { boardID in
-        if let manager = logItemServer.logManagers[boardID] {
-            Section(header: Text("Board: \(boardID)")) {
-                Text("FSR1: \(manager.latestFSR1)")
-                Text("FSR2: \(manager.latestFSR2)")
-                Text("FSR3: \(manager.latestFSR3)")
-                Text("FSR4: \(manager.latestFSR4)")
+                ForEach(Array(logItemServer.logManagers.keys), id: \.self) { boardID in
+                    if let manager = logItemServer.logManagers[boardID] {
+                        Section(header: Text("Board: \(boardID)")) {
+                            Text("FSR1: \(manager.latestFSR1)")
+                            Text("FSR2: \(manager.latestFSR2)")
+                            Text("FSR3: \(manager.latestFSR3)")
+                            Text("FSR4: \(manager.latestFSR4)")
+                        }
+                    }
+                }
             }
-        }
-    }
-}
 
             Spacer()
 
@@ -59,11 +59,7 @@ struct DebugView: View {
 
 struct DebugView_Previews: PreviewProvider {
     static var previews: some View {
-        if let server = try? LogItemServer(port: 12345) {
-            DebugView(subjectId: .constant("test"), debug: .constant(true))
-                .environmentObject(server)
-        } else {
-            Text("Failed to start preview.")
-        }
+        DebugView(subjectId: .constant("test"), debug: .constant(true))
+            .environmentObject(try! LogItemServer(port: 12345))
     }
 }
