@@ -17,8 +17,10 @@ struct DebugView: View {
             }
             Spacer()
 
+            
             List {
-                ForEach(Array(logItemServer.logManagers.keys), id: \.self) { boardID in
+                Text("Keys: \(logItemServer.logManagers.keys.sorted().joined(separator: ", "))")
+                ForEach(logItemServer.logManagers.keys.sorted(), id: \.self) { boardID in
                     if let manager = logItemServer.logManagers[boardID] {
                         Section(header: Text("Board: \(boardID)")) {
                             Text("FSR1: \(manager.latestFSR1)")
@@ -29,6 +31,8 @@ struct DebugView: View {
                     }
                 }
             }
+            
+
 
             Spacer()
 
